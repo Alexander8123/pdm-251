@@ -1,0 +1,9 @@
+name: atividade04
+description: Um projeto Dart para gerenciar alunos com SQLite3
+version: 1.0.0
+
+environment:
+  sdk: '3.7.2'
+
+dependencies:
+  sqflite_common_ffi: ^2.0.0
