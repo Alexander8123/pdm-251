@@ -1,0 +1,140 @@
+import 'dart:convert';
+
+class ProdutoVenda {
+  String codigo;
+  DateTime data;
+  double valorPedido;
+
+  ProdutoVenda({required this.codigo, required this.data, required this.valorPedido});
+
+  Map<String, dynamic> toJson() {
+    return {
+      'codigo': codigo,
+      'data': data.toIso8601String(),
+      'valorPedido': valorPedido,
+    };
+  }
+}
+
+class Cliente {
+  int codigo;
+  String nome;
+  int tipoCliente;
+
+  Cliente({required this.codigo, required this.nome, required this.tipoCliente});
+
+  Map<String, dynamic> toJson() {
+    return {
+      'codigo': codigo,
+      'nome': nome,
+      'tipoCliente': tipoCliente,
+    };
+  }
+}
+
+class Vendedor {
+  int codigo;
+  String nome;
+  double comissao;
+
+  Vendedor({required this.codigo, required this.nome, required this.comissao});
+
+  Map<String, dynamic> toJson() {
+    return {
+      'codigo': codigo,
+      'nome': nome,
+      'comissao': comissao,
+    };
+  }
+}
+
+class Veiculo {
+  int codigo;
+  String descricao;
+  double valor;
+
+  Veiculo({required this.codigo, required this.descricao, required this.valor});
+
+  Map<String, dynamic> toJson() {
+    return {
+      'codigo': codigo,
+      'descricao': descricao,
+      'valor': valor,
+    };
+  }
+}
+
+class ItemPedido {
+  int sequencial;
+  String descricao;
+  int quantidade;
+  double valor;
+
+  ItemPedido({required this.sequencial, required this.descricao, required this.quantidade, required this.valor});
+
+  Map<String, dynamic> toJson() {
+    return {
+      'sequencial': sequencial,
+      'descricao': descricao,
+      'quantidade': quantidade,
+      'valor': valor,
+    };
+  }
+}
+
+void main() {
+  // Exemplo de dados
+  ProdutoVenda produtoVenda = ProdutoVenda(
+    codigo: 'PV123',
+    data: DateTime.now(),
+    valorPedido: 5000.00,
+  );
+
+  Cliente cliente = Cliente(
+    codigo: 101,
+    nome: 'Carlos Silva',
+    tipoCliente: 1,
+  );
+
+  Vendedor vendedor = Vendedor(
+    codigo: 501,
+    nome: 'João Pereira',
+    comissao: 15.0,
+  );
+
+  Veiculo veiculo = Veiculo(
+    codigo: 1001,
+    descricao: 'Fusca 1970',
+    valor: 15000.00,
+  );
+
+  ItemPedido itemPedido = ItemPedido(
+    sequencial: 1,
+    descricao: 'Fusca 1970 - Resto de Estoque',
+    quantidade: 1,
+    valor: 15000.00,
+  );
+
+  // Convertendo os objetos para JSON
+  Map<String, dynamic> dados = {
+    'produtoVenda': produtoVenda.toJson(),
+    'cliente': cliente.toJson(),
+    'vendedor': vendedor.toJson(),
+    'veiculo': veiculo.toJson(),
+    'itemPedido': itemPedido.toJson(),
+  };
+
+  String jsonStr = jsonEncode(dados);
+
+  // Exibindo o JSON no console
+  print(jsonStr);
+
+  // Enviar o JSON por e-mail (exemplo, não funcional aqui)
+  // EnviarEmail(jsonStr);
+}
+
+// Função fictícia para enviar e-mail com JSON como corpo
+void EnviarEmail(String json) {
+  print('Enviando e-mail para taveira@ifce.edu.br');
+  // Aqui você deve configurar a biblioteca de envio de e-mail para enviar os dados
+}
